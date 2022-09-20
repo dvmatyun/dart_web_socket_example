@@ -53,7 +53,7 @@ void main() async {
     ),
     error: null,
   );
-  final socketRequest = SocketRequest(requestMessage: requestGame);
+  final socketRequest = SocketRequest.mirror(requestMessage: requestGame);
 
   final result =
       await dataBridge.singleRequestFull<CustomGameModel>(socketRequest);
@@ -76,7 +76,7 @@ void main() async {
     ]),
     error: null,
   );
-  final socketRequestList = SocketRequest(requestMessage: outMsgList);
+  final socketRequestList = SocketRequest.mirror(requestMessage: outMsgList);
 
   final listResult = await dataBridge
       .singleRequestFull<List<CustomGameModel>>(socketRequestList);
