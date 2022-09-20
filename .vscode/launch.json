@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "program": "bin/main.dart",
+            "name": "dart_web_socket_base",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "program": "bin/routing_example.dart",
+            "name": "routing_example",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
