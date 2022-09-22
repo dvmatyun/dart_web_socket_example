@@ -82,26 +82,30 @@ void main() async {
   /// No longer listening to `CustomGameModel` data stream:
   await singleEntitySub.cancel();
 
-  /// Example with grouped data:
-  /// Using `entitiesListTopic` socket topic to listen messages from server
-  /// that contain [List<CustomGameModel>] entity as serialized data
+  /// Example with grouped data
+  /// Topic for list of `CustomGameModel` entities
   final ISocketTopic entitiesListTopic = SocketTopicImpl.duo(
     host: TestDecoder.host,
     topic1: CustomGameModel.topic1List,
   );
+
+  /// This request will be completed when messages with
+  /// `singleEntityTopic` and `entitiesListTopic` will be received
+  final requestMessageFake = MessageToServer.onlyHost(host: 'fake');
   final srMultipleTopics = SocketRequest(
-    requestMessage: requestGame,
+    requestMessage: requestMessageFake,
     responseTopics: {
       singleEntityTopic,
       entitiesListTopic,
     },
   );
 
-  /// Now we are waiting for server to send us 2 messages and only then
-  /// the request will be considered completed.
-  /// #1 Requesting single entity:
-  print('> #1 Requesting single entity;');
+  /// Starting composite request:
   final taskCompositeResp = dataBridge.compositeRequest(srMultipleTopics);
+
+  /// #1 Emulation single entity response from server:
+  print('> #1 Requesting single entity;');
+  dataBridge.requestData(srSingle);
 
   /// #2 Emulating list response from server:
   final outMsgList = MessageToServer.duo(
