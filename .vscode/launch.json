@@ -12,6 +12,12 @@
             "name": "routing_example",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "program": "bin/socket_stream_example.dart",
+            "name": "socket_stream_example",
+            "request": "launch",
+            "type": "dart"
         }
     ]
 }

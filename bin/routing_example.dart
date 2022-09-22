@@ -41,7 +41,7 @@ void main() async {
     return;
   }
 
-  // Sending message with routing path 'test' and simple JSON payload:
+  // Sending message with routing path 'test/game' and simple JSON payload:
   final requestGame = MessageToServer.duo(
     host: TestDecoder.host,
     topic1: CustomGameModel.topic1,
@@ -60,7 +60,7 @@ void main() async {
   // ignore: avoid_print
   print('Got result: ${result.data}');
 
-  /// Example with list:
+  /// Example with list (path 'test/game-list'):
   final outMsgList = MessageToServer.duo(
     host: TestDecoder.host,
     topic1: CustomGameModel.topic1List,
